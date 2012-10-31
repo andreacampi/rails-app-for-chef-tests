@@ -1,0 +1,11 @@
+tmp_dir = "/tmp/file_callbacks"
+hook_name = "after_restart"
+
+resource = @new_resource
+
+template "#{tmp_dir}/#{hook_name}" do
+  source "hooks.erb"
+  mode 0644
+  variables(:release_path => resource.release_path,
+            :shared_path  => resource.shared_path)
+end
